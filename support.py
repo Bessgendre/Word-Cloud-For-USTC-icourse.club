@@ -1,3 +1,0 @@
-def PrintHello():
-    print("hello!")
-
