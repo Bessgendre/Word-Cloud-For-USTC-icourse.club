@@ -1,29 +1,10 @@
 # Web-Python
 
+## Introduction
 
-## 工作进度记录
-**2023.3.31**
+Recent years have seen the fast development of USTC icourse.club, which is a communication forum sharing comments and opinions on some courses taught by their lecturers. 
 
-确定主题：***对评课社区进行文本分析***
+The icourse.club has also been keeping pace with the times. In 2022, 4 new features were added to this website, and the community norms was also rewritren to meet some new requirements. Today we see that our club has grown into a grand community and gained its popularity among our students.
 
-预计完成以下功能：
-* 每一门课
-    * 评课长度与分数分布直方图
-    * 生成词云
-    * 给出情感、态度
-    * 判断课程评价的置信程度（分类问题？）
-        * 标准：评课数量
-        * 标准：评课长度以及分数分布
-        * 标准：态度对立程度（综合考虑长度、态度用词的多寡、）
-        * 标准：细节多寡
+However, it needs more. The website, with massive number of comments, can be seen as a corpus, which means that we could apply machine-learning algorithms to accomplish **text classification** work, helping students make sound judgements on a course and thus choose them in a faster and wiser way.
 
-
-**2023.4.5**
-
-目标：**输入网址，返回评课长度分布**
-
-成果
-* BeautifulSoup find_all 函数
-* map 函数
-* python 导入自定义模块
-* Seaborn 包和熟悉的 Mathematica 相似，学的应该会很快
