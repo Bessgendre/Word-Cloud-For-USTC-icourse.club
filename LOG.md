@@ -23,8 +23,19 @@
 
 目标：**一个浏览器辅助程序**，实时显示一个点评的分类与态度（分析结果储存在本地，并定期更新）
 
-总体分为三类：**干活细节、授课情况、课程安排**
+总体分为三类：**干货细节、授课情况、课程安排**
 
 使用**预训练模型**
 
 https://blog.csdn.net/github_36326955/article/details/54891204
+
+**2023.4.9**
+
+今日目标：词云图
+
+jieba，wordcloud 包
+
+调研 sentiment analysis 包 transformers：
+https://huggingface.co/docs/transformers/v4.27.2/en/quicktour#use-another-model-and-tokenizer-in-the-pipeline
+
+
