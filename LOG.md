@@ -38,4 +38,8 @@ jieba，wordcloud 包
 调研 sentiment analysis 包 transformers：
 https://huggingface.co/docs/transformers/v4.27.2/en/quicktour#use-another-model-and-tokenizer-in-the-pipeline
 
+怎样使用类？
 
+**2023.4.10**
+
+打开浏览器控制搜索，并解析搜索结果
