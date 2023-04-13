@@ -38,8 +38,18 @@ def CatchWords(comments):
     # 选取长度足够的评课
     worthycomments = []
     for chunk in comments:
-        if len(chunk) >= 100:
-            worthycomments = worthycomments + [chunk] 
+        if len(chunk) >= 200:
+            worthycomments = worthycomments + [chunk]       
+    # 退而求其次
+    if worthycomments == []:
+        for chunk in comments:
+            if len(chunk) >= 100:
+                worthycomments = worthycomments + [chunk] 
+    # 还是没有？
+    if worthycomments == []:
+        worthycomments = comments
+    
+    
     allcomments = ' \n '.join(worthycomments)
         
     # 分词
@@ -70,10 +80,15 @@ def TheWordCloud(comments):
     words = ' '.join(CatchWords(comments))
     
     #绘制云图
-    bg = "./USTC.jpg"
-    imgbg = imread(bg)
+    # bg = "./USTC.jpg"
+    # imgbg = imread(bg)
 
-    a = WordCloud(font_path = "./font/simkai.ttf", background_color = 'white', width = 1000, height = 800,mask = imgbg,colormap = "summer")
+    a = WordCloud(font_path = "./font/simkai.ttf", 
+                  background_color = 'white', 
+                  width = 1618, 
+                  height =1000,
+                #   mask = imgbg,
+                  colormap = "summer")
     
     a.generate(words)
     plt.imshow(a)
