@@ -43,3 +43,7 @@ https://huggingface.co/docs/transformers/v4.27.2/en/quicktour#use-another-model-
 **2023.4.10**
 
 打开浏览器控制搜索，并解析搜索结果
+
+**2023.4.12**
+
+多线程加速文本获取与词云生成
