@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <style>
+            .box{
+            width:500px;
+            height:40px;
+            border:2px solid rgb(255, 0, 0);
+            margin:auto;
+        }
+            .input{
+            float:left;
+            width:400px;
+            height:38px;
+            outline:none;
+            border:none;
+        }
+            .button{
+            float:left;
+            width:96px;
+            height:40px;
+            color:white;
+            background-color:red;
+            border:none;
+            outline:none;
+        }    
+    </style>    
+    </head>
+
+<body>
+
+    <div class="box">
+        <input type="text" class="input" placeholder="请输入商品">
+        <!--placeholder是文本框中的提示文字-->
+        <input type="button" value="搜索" class="button">
+    </div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+<div class="wrapper">
+    <h4>{{context.title}}</h4>
+    <ul>
+
+    {% for i in context.the_news %}
+    <li><a href="#"><span>{{ i }}</span>{{ context.the_news[i] }}</a></li>
+    {% endfor %}
+    
+    </ul>
+</div>
+
+<div class="form-div">
+    <form method="POST">
+        <input type="text">
+        <select>
+            <option>1</option>
+            <option>2</option>
+        </select>
+        <input type="submit">
+    </form>
+</div>
+
+<div class="img-div">
+    <span>新闻讲究时效性</span>
+</div>
+
+
+
