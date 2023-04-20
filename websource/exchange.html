@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <meta charset="utf-8" />
+    <script type="text/javascript" src="process.php"></script>
+    <script>
+        function InputCheck(){
+            var user = document.getElementById("user");
+            if(user.value==""){
+                alert("用户名为空！");
+                return false;
+            }
+            var pwd = document.getElementById("password");
+            if(pwd.value==""){
+                alert("密码不能为空！")
+                return false;
+            }
+        }
+    </script>
+</head>
+ 
+<body>
+    <form name="myform" method="get" action="process.php">
+        <label for="user">用户名</label>
+        <input type="text" id="user" name="user" value="user">
+        <br />
+        <label for="password">密码</label>
+        <input type="password" id="password" name="password" value="password">
+        <br />
+        <input type="submit" id="submit" name="submit" value="提交" onclick="return InputCheck()">
+    </form>
+</body>
+</html>
