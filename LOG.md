@@ -47,3 +47,13 @@ https://huggingface.co/docs/transformers/v4.27.2/en/quicktour#use-another-model-
 **2023.4.12**
 
 多线程加速文本获取与词云生成
+
+**2023.4.20**
+
+生成词云图就行，底层代码已经完成，现在需要写flask和html
+
+前端界面已经写好，目前有这样一些问题：
+
+1. 搜索界面怎样保持好看的同时不使用javascript 
+3. 实现前端传入url给后端
+4. 后端生成图片后保存在本地，然后返回给新的html文件
