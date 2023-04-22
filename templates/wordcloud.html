@@ -9,26 +9,12 @@
 </head>
 
 <body>
-  <img src="{{ url_for('static', filename='1.png')}}" />
+  {% for i in range(6) %}
 
-  <table>
-    {% for k,v in data_dict.items() %}
-      <tr>
-        <td>{{k}}</td>
-        <td>{{v[0]}}</td>
-        <td>{{v[1]}}</td>
-        <td>{{v[2]}}</td>
-        <td>{{v[3]}}</td>
-        <td>{{v[4]}}</td>
-      </tr>
-    {% endfor %}
-  </table>
-  
-  {% if status == "error" %}
-    <script>
-      alert("操作失败！")
-    </script>
-  {% endif %}
+    <img src="{{ url_for('static', filename=PictureNames[i])}}" />
+
+  {% endfor %}
+
   
 </body>
 

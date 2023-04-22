@@ -47,7 +47,15 @@ def wordcloud():
     	2: ['10002', '123', 'Sam', '男', '25'],
     	3: ['10003', '123', 'hong', '女', '20']
 	}
-    return render_template('wordcloud.html',data_dict=data, status="error")
+    Names= [
+        './wordcloud/0.png',
+        './wordcloud/1.png',
+        './wordcloud/2.png',
+        './wordcloud/3.png',
+        './wordcloud/4.png',
+        './wordcloud/5.png',
+    ]
+    return render_template('wordcloud.html', data_dict=data, PictureNames=Names)
 
  
 if __name__ == '__main__':
