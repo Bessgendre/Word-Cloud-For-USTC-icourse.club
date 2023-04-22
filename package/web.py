@@ -74,7 +74,7 @@ def CatchWords(comments):
             
     return mywordlist
 
-def TheWordCloud(comments):
+def TheWordCloud(comments,FileNumber):
     
     # 提取关键词
     words = ' '.join(CatchWords(comments))
@@ -88,12 +88,14 @@ def TheWordCloud(comments):
                   width = 1618, 
                   height =1000,
                 #   mask = imgbg,
+                  scale = 2,
                   colormap = "summer")
     
     a.generate(words)
     plt.imshow(a)
     plt.axis("off")
-    plt.show()
+    plt.savefig('./static/wordcloud/' + str(FileNumber) + '.png')
+    # plt.show()
     
 
 
