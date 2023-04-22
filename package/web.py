@@ -99,28 +99,35 @@ def TheWordCloud(comments):
 
 
 def SearchCourse(course_name):
-    # 打开 Safari 浏览器
-    driver = webdriver.Safari()
+    
     root_path = 'https://icourse.club'
-    driver.get(root_path)
     
-    # 按照课程名搜索
-    element = driver.find_element(By.ID, 'search')
-    element.send_keys(course_name)
-    element.submit()
+    # 如果需要打开 Safari 浏览器，则按照下面进行
+    # driver = webdriver.Safari()
+    # driver.get(root_path)
     
-    time.sleep(2)
+    # element = driver.find_element(By.ID, 'search')
+    # element.send_keys(course_name)
+    # element.submit()
     
-    # 解析搜索结果，获取每个课程的网页链接
-    search_page = driver.page_source
-    soup = BeautifulSoup(search_page,"lxml")
+    # time.sleep(2)
+    
+    # search_page = driver.page_source
+    # soup = BeautifulSoup(search_page,"lxml")
+
+    # 其实不需要打开浏览器：
+    
+    html = requests.get(root_path + '/search/?q=' + course_name)
+    soup = BeautifulSoup(html.text,"lxml")
     raw_link_sourse = soup.find_all(name='a',attrs={"class":"px16"})
 
     links = []
     for link_sourse in raw_link_sourse:
         links = links + [root_path + str(link_sourse.get('href'))]
     
-    driver.quit()
+    
+    # 开浏览器的话，最后需要关掉它
+    # driver.quit()
     
     # 返回搜索结果第一页的课程网页链接
     return links
