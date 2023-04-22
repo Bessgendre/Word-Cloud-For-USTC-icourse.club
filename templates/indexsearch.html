@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<!-- searching site -->
+
 <html>
 <head>
     <meta charset="UTF-8">
@@ -111,11 +113,14 @@
     
 </body>
 
+<!-- import ajax -->
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+
 <!-- searching box -->
 <script>
     var oInp = document.getElementById('inp');
     var oBtn = document.getElementById('btn');
-
+    
     oBtn.onclick = function () {
         Search();
     }
@@ -127,8 +132,18 @@
     }
 
     function Search() {
+        /* get the searching result page, which is the center value of the following process, like text analysis, word extraction and wordcloud generation */
+
         var url = 'https://icourse.club/search/?q=' + oInp.value;
+
+        /* open the searching result page */
+
         window.open(url);
+
+        /* return url to flask */
+        
+        /* show the wordcloud page */
+        window.open('/wordcloud');
     }
 </script>
 
