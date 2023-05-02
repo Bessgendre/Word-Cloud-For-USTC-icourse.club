@@ -1,65 +1,73 @@
-# 数值计算
-import numpy as np
-
-# 绘图
 import matplotlib.pyplot as plt
-import seaborn as sns
+
+# wordcloud
 from wordcloud import WordCloud
 from imageio import imread
 
-#网站解析
+# webpage analysis
 import requests, lxml
 from bs4 import BeautifulSoup
 import jieba
 
-# 浏览器控制
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-import time
+def SearchCourse(course_name):
+    # With the name of a course, SearchCourse returns links of the same course taught by different teachers. This shall be the first step for a student when choosing courses at the beginning of every semester.
+    
+    root_path = 'https://icourse.club'
+    
+    html = requests.get(root_path + '/search/?q=' + course_name)
+    soup = BeautifulSoup(html.text,"lxml")
+    raw_link_sourse = soup.find_all(name='a',attrs={"class":"px16"})
+
+    links = []
+    for link_sourse in raw_link_sourse:
+        links = links + [root_path + str(link_sourse.get('href'))]
+    
+    return links
 
 def GetComment(url):
-    # GetComment 是一个用于提取评课社区某一门课下所有课评的函数
-    # 输入这门课的 url ，以 list 形式返回这门课的所有课评，列表元素为字符串
+    # GetComment is a function appling to the icourse.club that can extract all comments under a single course taught by one lecturer.
+    # input the url of that course, and return all comments in one list.
     
-    # 获取源码并解析
+    # analysis the page
     html = requests.get(url)
     soup = BeautifulSoup(html.text,"lxml")
 
-    # 提取课评内容
+    # extract comments
     rawcomments = soup.find_all(name='div',attrs={"class":"review-content"})
     comments = []
     for content in rawcomments:
         comments = comments + [content.get_text()]
     
-    # 以列表形式返回一门课的课评，列表元素为字符串
     return comments
 
 def CatchWords(comments):
-    # 选取长度足够的评课
+    # CatchWords is a function that decompose the list of comments into key words. it is recommended to act on the result of GetComment.
+    
     if len(comments) == 0:
         return "error"
     
+    # choose worthy comments as long as possible
     worthycomments = []
     for chunk in comments:
         if len(chunk) >= 200:
             worthycomments = worthycomments + [chunk]       
-    # 退而求其次
+
     if worthycomments == []:
         for chunk in comments:
             if len(chunk) >= 100:
                 worthycomments = worthycomments + [chunk] 
-    # 还是没有？
+
     if worthycomments == []:
         worthycomments = comments
     
-    
     allcomments = ' \n '.join(worthycomments)
+       
         
-    # 分词
+    # divide words with jieba
     seg_str = jieba.cut(allcomments, cut_all=False)
     liststr = "/".join(seg_str)
 
-    # 去除停用词
+    # read stopwords
     stopwords_path = "./stopwords.txt"
     f_stop=open(stopwords_path, encoding='utf8')
     f_stop_text = f_stop.read()
@@ -68,9 +76,7 @@ def CatchWords(comments):
     mywordlist=[]
     f_stop_seg_list = f_stop_text.split('\n')
 
-    # 将f_stop_text以'\n'切割字符串，返回列表赋值给f_stop_seg_list
-    # 使用for循环，将liststr以 '/' 分割后的元素，一个个放入myword中，如果myword在的f_stop_seg_list  中，且myword.strip()长度大于1，就将myword添加到列表mywordlist中
-    # 此步是为去除停用词，将去除的停用词的元素放到新建的列表中
+    # create the mywordlist for wordcloud generation
     for myword in liststr.split('/'):
         if not(myword.strip() in f_stop_seg_list)and len(myword.strip())>1:
             mywordlist.append(myword)
@@ -78,13 +84,16 @@ def CatchWords(comments):
     return mywordlist
 
 def TheWordCloud(comments,FileNumber):
+    # TheWordCloud is an integrated function that combines all functions above, leading to the generation of a wordcloud.
+    # It is fed on list of comments (which is based on GetComments) and FileNumber is the number used to name the wordcloud.png
     
     if len(comments) == 0:
-        return "error"
-    # 提取关键词
+        return "error, no comments under this course!"
+    # word excavation
     words = ' '.join(CatchWords(comments))
     
-    #绘制云图
+    # plot the wordcloud
+    
     # bg = "./static/USTC.jpg"
     # imgbg = imread(bg)
 
@@ -100,41 +109,3 @@ def TheWordCloud(comments,FileNumber):
     plt.imshow(a)
     plt.axis("off")
     plt.savefig('./static/wordcloud/' + str(FileNumber) + '.png')
-    # plt.show()
-    
-
-
-
-def SearchCourse(course_name):
-    
-    root_path = 'https://icourse.club'
-    
-    # 如果需要打开 Safari 浏览器，则按照下面进行
-    # driver = webdriver.Safari()
-    # driver.get(root_path)
-    
-    # element = driver.find_element(By.ID, 'search')
-    # element.send_keys(course_name)
-    # element.submit()
-    
-    # time.sleep(2)
-    
-    # search_page = driver.page_source
-    # soup = BeautifulSoup(search_page,"lxml")
-
-    # 其实不需要打开浏览器：
-    
-    html = requests.get(root_path + '/search/?q=' + course_name)
-    soup = BeautifulSoup(html.text,"lxml")
-    raw_link_sourse = soup.find_all(name='a',attrs={"class":"px16"})
-
-    links = []
-    for link_sourse in raw_link_sourse:
-        links = links + [root_path + str(link_sourse.get('href'))]
-    
-    
-    # 开浏览器的话，最后需要关掉它
-    # driver.quit()
-    
-    # 返回搜索结果第一页的课程网页链接
-    return links
