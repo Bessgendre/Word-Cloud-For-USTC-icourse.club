@@ -65,3 +65,14 @@ https://huggingface.co/docs/transformers/v4.27.2/en/quicktour#use-another-model-
 多进程绘图并保存，在ipynb出现覆盖问题，在py文件出现内核崩溃问题，只能完成最短时间的进程
 
 截止日期要到了，放弃多进程，单线程CloudGenerate.py
+
+
+**2023.05.02**
+
+水平不够，用户得多点几个按钮、多打开几个窗口了。
+
+目标：从前端接收提交的课程名字，传到后端，保存到 name.txt 里就算成功。
+
+找到网页崩溃的问题了，多进程绘图保存过程在py的问题使得放进main.py也会报错
+
+AJAX 解决了前后端交互的问题，

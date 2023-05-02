@@ -33,12 +33,13 @@ def index():
 
     
 # 保存图片并显示，只需要从前端传递一个搜索结果页面的URL过来
-@app.route('/wordcloud')
+@app.route('/wordcloud',  methods = ['POST', 'GET'])
 def result():
-    
-    f = open("./static/name.txt")
-    Course_Name = f.read()
-    f.close()
+    Course_Name = str(request.args.get('name'))
+
+    # f = open("./static/name.txt")
+    # Course_Name = f.read()
+    # f.close()
 
     # 获得一个搜索结果下的所有课程链接
     links = web.SearchCourse(Course_Name)
@@ -56,10 +57,16 @@ def result():
     for i in range(len(links)):
         all_course_comments.append(comments_thd[i].get_result())
 
-
+    k = 0
     for i in range(len(all_course_comments)):
-        web.TheWordCloud(all_course_comments[i],i)
+        
+        if len(all_course_comments[i]) != 0:
+            web.TheWordCloud(all_course_comments[i],i)
+            k = k + 1
+            print(str(k) + " picture drown...")
 
+    print("all pictures finished, please check static//wordcloud")
+    
     
     Names= []
     for i in range(6):
@@ -69,4 +76,4 @@ def result():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0',debug=True,port=80) #127.0.0.1 回路 自己返回自己
+    app.run()

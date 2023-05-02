@@ -9,13 +9,15 @@
 </head>
 
 <body>
+
+  <center>
   {% for i in range(6) %}
 
     <img src="{{ url_for('static', filename=PictureNames[i])}}" />
 
   {% endfor %}
 
-  
+  </center>
 </body>
 
 

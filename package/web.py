@@ -36,6 +36,9 @@ def GetComment(url):
 
 def CatchWords(comments):
     # 选取长度足够的评课
+    if len(comments) == 0:
+        return "error"
+    
     worthycomments = []
     for chunk in comments:
         if len(chunk) >= 200:
@@ -76,6 +79,8 @@ def CatchWords(comments):
 
 def TheWordCloud(comments,FileNumber):
     
+    if len(comments) == 0:
+        return "error"
     # 提取关键词
     words = ' '.join(CatchWords(comments))
     
