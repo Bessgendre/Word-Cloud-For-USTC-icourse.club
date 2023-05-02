@@ -85,7 +85,7 @@ def TheWordCloud(comments,FileNumber):
     words = ' '.join(CatchWords(comments))
     
     #绘制云图
-    # bg = "./USTC.jpg"
+    # bg = "./static/USTC.jpg"
     # imgbg = imread(bg)
 
     a = WordCloud(font_path = "./font/simkai.ttf", 
