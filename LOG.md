@@ -57,3 +57,11 @@ https://huggingface.co/docs/transformers/v4.27.2/en/quicktour#use-another-model-
 1. 搜索界面怎样保持好看的同时不使用javascript 
 3. 实现前端传入url给后端
 4. 后端生成图片后保存在本地，然后返回给新的html文件
+
+**2023.5.01**
+
+多进程绘制都可以，但是加上保存图片就有问题了，常常会覆盖，不知道为什么
+
+多进程绘图并保存，在ipynb出现覆盖问题，在py文件出现内核崩溃问题，只能完成最短时间的进程
+
+截止日期要到了，放弃多进程，单线程CloudGenerate.py
