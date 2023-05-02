@@ -134,16 +134,17 @@
     function Search() {
         /* get the searching result page, which is the center value of the following process, like text analysis, word extraction and wordcloud generation */
 
-        var url = 'https://icourse.club/search/?q=' + oInp.value;
+        /* var url = 'https://icourse.club/search/?q=' + oInp.value; */
+
+        /* return url to flask */
+        /* sleep(6); */
+        
+        /* show the wordcloud page */
+        window.open('/wordcloud');
 
         /* open the searching result page */
 
         window.open(url);
-
-        /* return url to flask */
-        
-        /* show the wordcloud page */
-        window.open('/wordcloud');
     }
 </script>
 
