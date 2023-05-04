@@ -109,3 +109,6 @@ def TheWordCloud(comments,FileNumber):
     plt.imshow(a)
     plt.axis("off")
     plt.savefig('./static/wordcloud/' + str(FileNumber) + '.png')
+    
+    
+    
